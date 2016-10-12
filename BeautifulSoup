@@ -1,0 +1,28 @@
+#!/usr/bin/python
+
+import urllib2
+from bs4 import BeautifulSoup
+
+wiki = "https://en.wikipedia.org/wiki/List_of_state_and_union_territory_capitals_in_India"
+
+page = urllib2.urlopen(wiki)
+soup=BeautifulSoup(page, "lxml")
+
+
+'''pritn all document
+print soup.prettify()
+'''
+
+'''soup.<tag>: Return content between opening and closing tag including tag. '''
+print soup.title
+
+'''soup.<tag>.string: Return string within given tag '''
+print soup.title.string
+
+'''Find all the links within page a tags'''
+print soup.a
+
+'''. Now to extract all the links within <a>, we will use find_all()'''
+all_links=soup.find_all('a')
+for link in all_links:
+        print link.get("href")
